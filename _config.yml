@@ -60,6 +60,17 @@ time_format: HH:mm:ss
 per_page: 10
 pagination_dir: page
 
+social:
+  GitHub: https://github.com/BestRumbleCN/
+  微博: http://weibo.com/u/1693061244
+  
+# Social Icons
+social_icons:
+  enable: true
+  # Icon Mappings
+  GitHub: github
+  微博: weibo
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
