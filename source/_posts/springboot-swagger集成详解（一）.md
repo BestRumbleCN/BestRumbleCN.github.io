@@ -49,4 +49,4 @@ swagger针对返回值对象和入参（responseBody方式传入）对象，都�
 对应的接口文档，我们点击model,可以看到
 ![](http://palyboy.qiniudn.com/8.png)
 当然@ApiModelProperty还有许多使用的参数可以使用，可以在实践中慢慢探索，譬如sample，可以提供具体的参数样例。
-ok,至此，一个比较完善的在线接口文档完成啦。
+至此，一个比较完善的在线接口文档完成啦。
