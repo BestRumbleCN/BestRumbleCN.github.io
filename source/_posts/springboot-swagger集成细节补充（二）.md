@@ -14,7 +14,7 @@ tags:
 本文中的样例代码可参考：[https://github.com/BestRumbleCN/springboot-swagger](https://github.com/BestRumbleCN/springboot-swagger) 中的boot-swagger2。
 ## 分组
 swagger2中接口分组非常简单，在我们的配置类Swagger2Config.java中，一个Docket就对应着一个分组，我们可以通过创建多个Docket对象实现分组。
-```
+```java
 @Configuration
 @EnableSwagger2
 public class Swagger2Config {
@@ -47,7 +47,7 @@ public class Swagger2Config {
 假设我们在做一个学校的管理系统，后台用户分为校长、老师、学生。我们可以按照如下的方式对controller进行细分。
 ![](http://palyboy.qiniudn.com/9.png)
 在我们的Swagger2Config.java可以配置三个Docket
-```
+```java
 	@Bean
 	public Docket createPresidentDocket() {
 		return new Docket(DocumentationType.SWAGGER_2).groupName("校长").apiInfo(presidentApiInfo()).select()
@@ -76,7 +76,7 @@ public class Swagger2Config {
 **通过RequestHandlerSelectors.withClassAnnotation()指定扫描的包路径。**
 上文提到的路径分组是一种分组方式，但是这种分组的局限比较大，万一我们的代码中没有按照这种方式分包那就无法分组。下面介绍一个更灵活的方式：注解分组。
 仍然以学校管理系统为例，校长和老师都属于学校管理层，我们希望将他们放到同一个分组中。首先定义我们自己的分组注解。
-```
+```java
 /**
  * 学校管理层分组注解
  * @author fly
@@ -91,7 +91,7 @@ public @interface Manager {
 }
 ```
 在对应的Controller上加上注解
-```
+```java
 @RestController
 @RequestMapping("/teacher/users")
 @Api(description = "老师班级管理接口")
@@ -109,7 +109,7 @@ public class SchoolController {
 ```
 配置Docket
 **核心：RequestHandlerSelectors.withClassAnnotation(Manager.class)**
-```
+```java
 @Bean
 public Docket createManagerDocket() {
 	return new Docket(DocumentationType.SWAGGER_2).groupName("管理者").apiInfo(managerApiInfo()).select()
@@ -129,7 +129,7 @@ public Docket createManagerDocket() {
 此时的管理者分组接口如下图：
 ![](http://palyboy.qiniudn.com/14.png)
 这里的接口排序是 1.class 2.school 3.student，假设我们希望按照由大到小的方式排列（1.school 2.class 3.student），那么需要修改@Api注解中的tags属性。以SchoolController为例
-```
+```java
 @RestController
 @RequestMapping("/president/school")
 @Api(tags = {"1.0.1"},description = "校长-学校管理接口")
