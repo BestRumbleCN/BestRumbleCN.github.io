@@ -5,7 +5,7 @@ tags:
 ---
 最近在做jmeter性能压测，每次运行前都要手动删除上一次生成的数据，跑完还要手动kill掉jmeter进程，所以就想写个shell脚本，一次性执行所有这些操作。
 其中删除数据的脚本我写成了下面这样：
-
+<!-- more -->
 ```bash
 file_path = /jproject/result
 rm -f ${fiel_path}/*
